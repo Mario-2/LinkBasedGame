@@ -1,0 +1,251 @@
+{
+    "Title": "title",
+    "Credits": "Created by Zachary Rocco (zrocco@ucsc.edu).",
+    "InitialLocation": "Intro",
+    "Locations": {
+        "Intro": {
+            "Body": "You find yourself at the mouth of a dark cave.",
+            "Choices": [
+                {
+                    "Text": "Continue",
+                    "Target": "Central_Room"
+                }
+            ]
+        },
+        "Central_Room": {
+            "Body": "You are now in the main room. A large door to the south requires a key to open.",
+            "Body_Lamp": "You are now in the main room. A large door to the south requires a key to open. The lamp burns brightly, illuminating the room.",
+            "Choices": [
+                {
+                    "Text": "West",
+                    "Target": "West"
+                },
+                {
+                    "Text": "East",
+                    "Target": "East"
+                },
+                {
+                    "Text": "Large Door",
+                    "Target": "Door",
+                    "Lock": "Key"
+                }
+            ]
+        },
+        "East": {
+            "Body": "You make your way to the east room. There are paths to the north and south.",
+            "Body_Lamp": "You make your way to the east room. There are paths to the north and south. Your lamp burns brightly.",
+            "Choices": [
+                {
+                    "Text": "Central Room",
+                    "Target": "Central_Room"
+                },
+                {
+                    "Text": "North",
+                    "Target": "North"
+                },
+                {
+                    "Text": "South",
+                    "Target": "South"
+                },
+                {
+                    "Text": "Skeleton",
+                    "Target": "Body",
+                    "Item": "Lamp"
+                }
+            ]
+        },
+        "North": {
+            "Body": "You head north. An image of an owl is etched on the wall.",
+            "Choices": [
+                {
+                    "Text": "South",
+                    "Target": "East"
+                },
+                {
+                    "Text": "Grab the cheese",
+                    "Target": "North",
+                    "Item": "Cheese"
+                }
+            ]
+        },
+        "South": {
+            "Body": "You head south. An image of a lizard is etched on the wall.",
+            "Choices": [
+                {
+                    "Text": "North",
+                    "Target": "East"
+                },
+                {
+                    "Text": "Grab the hook",
+                    "Target": "South",
+                    "Item": "Hook"
+                }
+            ]
+        },
+        "Body": {
+            "Body": "You find the skeleton of an explorer... beside the body is a lamp",
+            "Choices": [
+                {
+                    "Text": "Lamp",
+                    "Target": "East"
+                }
+            ]
+        },
+        "West": {
+            "Body": "You make your way to the west room. A darkened hall lies furhter west; you cant explore it without a light.",
+            "Body_Lamp": "You make your way to the west room. A hall lies furhter west, illuminated by your lamp.",
+            "Choices": [
+                {
+                    "Text": "Central Room",
+                    "Target": "Central_Room"
+                },
+                {
+                    "Text": "West",
+                    "Target": "West_Dark",
+                    "Lamp": true
+                }
+            ]
+        },
+        "West_Dark": {
+            "Body": "You can't see a thing in the darkness.",
+            "Body_Lamp": "You make your way into the dark room. An image of a cat is etched on the wall.",
+            "Choices": [
+                {
+                    "Text": "East",
+                    "Target": "West"
+                },
+                {
+                    "Text": "Grab the key",
+                    "Target": "Key",
+                    "Lamp": true,
+                    "Rat": 1
+                },
+                {
+                    "Text": "Grab the key",
+                    "Target": "Cheese",
+                    "Lamp": true,
+                    "Rat": 2
+                }
+            ]
+        },
+        "Key": {
+            "Body": "You spot a key on the ground. As you reach out for it, a rat runs by and grabs it! The rat runs into a hole.",
+            "Choices": [
+                {
+                    "Text": "Return",
+                    "Target": "West_Dark"
+                },
+                {
+                    "Text": "Lure it with cheese",
+                    "Target": "Cheese",
+                    "Lock": "Cheese",
+                    "Variable": "Rat_Puzzle",
+                    "Var_Value": 2
+                }
+            ]
+        },
+        "Cheese": {
+            "Body": "The rat drops the key and goes for the cheese. The key is left in the hole, out of reach.",
+            "Choices": [
+                {
+                    "Text": "Return",
+                    "Target": "West_Dark"
+                },
+                {
+                    "Text": "Use the hook",
+                    "Target": "Hook",
+                    "Key": "Hook",
+                    "Variable": "Rat_Puzzle",
+                    "Var_Value": 3,
+                    "Item": "Key"
+                }
+            ]
+        },
+        "Hook": {
+            "Body": "You grab the key with the hook.",
+            "Choices": [
+                {
+                    "Text": "Return",
+                    "Target": "West_Dark"
+                }
+            ]
+        },
+        "Door": {
+            "Body": "You open the door with the key, and are met with 3 sets of 3 tiles...",
+            "Choices": [
+                {
+                    "Text": "Central Room",
+                    "Target": "Central_Room"
+                }
+            ],
+            "Choices_Puzzle_1": [
+                {
+                    "Text": "Cat",
+                    "Var_Value": true
+                },
+                {
+                    "Text": "Dog",
+                    "Var_Value": false
+                },
+                {
+                    "Text": "Bear",
+                    "Var_Value": false
+                }
+            ],
+            "Choices_Puzzle_2": [
+                {
+                    "Text": "Eagle",
+                    "Var_Value": false
+                },
+                {
+                    "Text": "Hawk",
+                    "Var_Value": false
+                },
+                {
+                    "Text": "Owl",
+                    "Var_Value": true
+                }
+            ],
+            "Choices_Puzzle_3": [
+                {
+                    "Text": "Crocodile",
+                    "Var_Value": false
+                },
+                {
+                    "Text": "Lizard",
+                    "Var_Value": true
+                },
+                {
+                    "Text": "Snake",
+                    "Var_Value": false
+                }
+            ]
+        },
+        "Door_Fail": {
+            "Body": "You push down the three tiles... unfortunately nothing seems to happen.",
+            "Choices": [
+                {
+                    "Text": "Return",
+                    "Target": "Central_Room"
+                }
+            ]
+        },
+        "Door_Win": {
+            "Body": "You push down the three tiles... and the door opens!",
+            "Choices": [
+                {
+                    "Text": "Enter",
+                    "Target": "Win"
+                }
+            ]
+        },
+        "Win": {
+            "Body": "Inside is a room filled with gems and gold! Hooray!"
+        }
+    },
+    "Inventory": [],
+    "Variables" : {
+        "Lamp_Lit": false,
+        "Rat_Puzzle": 1
+    }
+}
